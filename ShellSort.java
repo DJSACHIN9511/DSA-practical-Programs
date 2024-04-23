@@ -1,45 +1,46 @@
 import java.util.Scanner;
 
-public class ShellSort {
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter the number of elements: ");
+        System.out.print("Enter the number of students: ");
         int n = scanner.nextInt();
-        int[] arr = new int[n];
+        double[] list1 = new double[n];
 
-        System.out.println("Enter the elements:");
-        for (int i = 0; i < n; i++) {
-            arr[i] = scanner.nextInt();
+        for (int s = 0; s < n; s++) {
+            System.out.print("Enter the Percentage of student: ");
+            double x = scanner.nextDouble();
+            list1[s] = x;
         }
-
-        System.out.println("Unsorted array:");
-        for (int num : arr) {
-            System.out.print(num + " ");
+        System.out.println("Unsorted Array:");
+        for (double value : list1) {
+            System.out.print(value + " , ");
         }
-        System.out.println(" ");
+        System.out.println();
 
-        shellSort(arr);
+        shellSort(list1, n);
 
-        System.out.println("Sorted array:");
-        for (int num : arr) {
-            System.out.print(num + " ");
+        System.out.println("Sorted Array in Ascending Order:");
+        for (double value : list1) {
+            System.out.print(value + " , ");
         }
     }
-
-    public static void shellSort(int[] arr) {
-        int n = arr.length;
-        for (int gap = n / 2; gap > 0; gap /= 2) {
-            for (int i = gap; i < n; i++) {
-                int temp = arr[i];
-                int j;
-                for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
-                    arr[j] = arr[j - gap];
+    public static void shellSort(double[] array, int n) {
+        int interval = n / 2;
+        while (interval > 0) {
+            for (int i = interval; i < n; i++) {
+                double temp = array[i];
+                int j = i;
+                while (j >= interval && array[j - interval] > temp) {
+                    array[j] = array[j - interval];
+                    j -= interval;
                 }
-                arr[j] = temp;
+                array[j] = temp;
             }
-            for (int num : arr) {
-                System.out.print(num + " ");
+            interval /= 2;
+            for (double value : array) {
+                System.out.print(value + " , ");
+
             }
             System.out.println(" ");
         }
